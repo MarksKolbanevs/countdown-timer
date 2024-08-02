@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap');
+
+body,a,h1,h2,h3,h4,h5,h6,p{
+    margin: 0;
+    font-family: 'Red Hat Text', sans-serif;
+    box-sizing: border-box;
+    text-align: center;
+}
+h1{
+    color:white;
+    font-size: 24px;
+    letter-spacing: 6px;
+}
+html,body, #root, .App{
+    height: 100%;
+}
+.App{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: rgb(26,24,35);
+    background: linear-gradient(180deg, rgba(26,24,35,1) 0%, rgba(48,36,58,1) 100%);
+}
+section{
+    width: 100%;
+    height: 100%;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-image:url("./../public/bg-stars.svg");
+    h1{
+        margin-top: 15px;
+    }
+    .countdown-container{
+        display: flex;
+        gap:32px;
+        margin-top: 105px;
+        .date-text{
+            color:#8385AB;
+            font-size: 16px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+        .countdown-item-container{
+            .countdown-item{
+                font-weight: bold;
+                font-size: 80px;
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                width: 100%;
+                min-width: 150px;
+                height: 140px;
+                
+                .half-circle-vertical {
+                    width: 6px;
+                    height: 12px;
+                    background-color: #181B22;
+                    position: absolute;
+                    z-index: 2;
+                    &.--left{
+                        top:45%;
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                    }
+                    &.--right{
+                        top:45%;
+                        right: 0;
+                        border-top-left-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                        border-top-right-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+                }
+                .countdown-item-top{
+                    background-color: #2C2C44;
+                    color:#FE5C83;
+                    height: 68px;
+                    // z-index: 1;
+                    border-radius: 8px 8px 0px 0px;
+                    // position: relative;
+                    // min-height: 70px;
+                    position: relative;
+                    .shadow{
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #2C2C44;
+                        left: 0;
+                        opacity: 0.1;
+                    }
+                    p{
+                        margin-top: 9%;
+                        overflow: hidden; /* Ensure content doesn't overflow when height is reduced */
+                        white-space: nowrap; /* Prevent text from wrapping */
+                        transition: height 2s; /* Ensure smooth transition */
+                    //   position: absolute;
+                    //   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);  
+                    }
+                    
+                }
+                .countdown-item-bottom{
+                    // position: absolute;
+                    background-color: #34364F;
+                    // bottom: 0;
+                    height: 68px;
+                    // // width: 100%;
+                    // z-index: 1;
+                    color: #FE5C83;
+                    border-radius: 0px 0px 8px 8px;
+                    // position: relative;
+                    -webkit-box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
+                    -moz-box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
+                    box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
+                    p{
+                        margin-top: -36%;
+                    //   position: absolute;
+                    //   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);  
+                    } 
+                }
+            }
+        }
+        }
+    }
+footer{
+    width: 100%;
+    height: 197px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./../public/pattern-hills.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    gap:30px;
+    a{
+        cursor: pointer;
+        svg{
+            path{
+                transition: 0.3s ease;
+                fill:#8385AB;
+                
+            }
+        }
+        &:hover svg path{
+            fill:#F66083;
+            transition: 0.3s ease;
+        }
+    }
+}
+
+// .fadeOut-anim {
+//     animation: fadeOut 2s backwards; /* 2s is the duration of the animation */
+//   }
+
+//   @keyframes fadeOut {
+//     0% {
+//       height: 80px; /* Start with the full height */
+//     }
+//     100% {
+//       height: 0px; /* End with no height */
+//     }
+//   }
+
+@media screen and (max-width: 710px) {
+    .half-circle-vertical {
+        &.--left{
+            top:20% !important;
+        }
+        &.--right{
+            top:20% !important;
+        }
+    }
+    .countdown-item{
+        font-size: 36px !important;
+        min-width: 70px !important;
+        height: auto !important;
+    }
+    .countdown-item-top{
+        height: 34px !important;
+        p{
+            margin-top: 15% !important;
+        }
+    }
+    .countdown-item-bottom{
+        height: 34px !important;
+        p{
+            margin-top: -34% !important;
+        }
+    }
+    .date-text{
+        font-size: 7px !important;
+        letter-spacing: 3px !important;
+        margin-top: 15px !important;
+    }
+  }
+
+@media screen and (max-width: 390px) {
+    .countdown-container{
+        gap: 12px !important;
+    }
+}
