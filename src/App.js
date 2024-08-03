@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import CountdownItem from './CountdownItem';
 
 function App() {
-  const [isShrinking, setIsShrinking] = useState(false);
-
-  const startAnimation = () => {
-    setIsShrinking(true);
-  };
-
   const calculateTimeLeft = () => {
     const targetDate = new Date('2024-09-31T23:59:59'); // Set your target date here
     const now = new Date();
@@ -29,83 +24,35 @@ function App() {
         seconds: '00'
       };
     }
-
     return timeLeft;
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+      const timer = setInterval(() => {
+        setTimeLeft(calculateTimeLeft());
+      }, 1000);
 
-    return () => clearInterval(timer);
-  }, []);
+      // startAnimation();
 
+      return () => clearInterval(timer);
+
+
+  }, [timeLeft]);
   return (
     <div className="App">
       <section>
         <h1>WE'RE LAUNCHING SOON</h1>
           <div className="countdown-container">
-            <div className='countdown-item-container'>
-            <div className="countdown-item" >
-              <div className="half-circle-vertical --left"/>
-              <div className="half-circle-vertical --right"/>
-              <div className={`countdown-item-top`}>
-                <div className="shadow"/>
-                <p>{timeLeft.days}</p>
-              </div>
-              <div className={`countdown-item-bottom ${isShrinking ? 'fadeOut-anim' : ''}`}>
-                <p>{timeLeft.days}</p>
-              </div>
-            </div>
-              <p className='date-text'>DAYS</p>
-            </div>
-            <div className='countdown-item-container'>
-            <div className="countdown-item" >
-              <div className="half-circle-vertical --left"/>
-              <div className="half-circle-vertical --right"/>
-              <div className={`countdown-item-top`}>
-                <div className="shadow"/>
-                <p>{timeLeft.hours}</p>
-              </div>
-              <div className={`countdown-item-bottom ${isShrinking ? 'fadeOut-anim' : ''}`}>
-                <p>{timeLeft.hours}</p>
-              </div>
-            </div>
-              <p className='date-text'>HOURS</p>
-            </div>
-            <div className='countdown-item-container'>
-            <div className="countdown-item" >
-              <div className="half-circle-vertical --left"/>
-              <div className="half-circle-vertical --right"/>
-              <div className={`countdown-item-top`}>
-                <div className="shadow"/>
-                <p>{timeLeft.minutes}</p>
-              </div>
-              <div className={`countdown-item-bottom ${isShrinking ? 'fadeOut-anim' : ''}`}>
-                <p>{timeLeft.minutes}</p>
-              </div>
-            </div>
-              <p className='date-text'>MINUTES</p>
-            </div>
-            <div className='countdown-item-container'>
-            <div className="countdown-item" >
-              <div className="half-circle-vertical --left"/>
-              <div className="half-circle-vertical --right"/>
-              <div className={`countdown-item-top`}>
-                <div className="shadow"/>
-                <p>{timeLeft.seconds}</p>
-              </div>
-              <div className={`countdown-item-bottom ${isShrinking ? 'fadeOut-anim' : ''}`}>
-                <p>{timeLeft.seconds}</p>
-              </div>
-            </div>
-              <p className='date-text'>SECONDS</p>
-            </div>
+            <CountdownItem time={timeLeft.days} timeName={"DAYS"}/>
+            <CountdownItem time={timeLeft.hours} timeName={"HOURS"}/>
+            <CountdownItem time={timeLeft.minutes} timeName={"MINUTES"}/>
+            <CountdownItem time={timeLeft.seconds} timeName={"SECONDS"}/>
+            
           </div>
         </section>
+        {/* <button onClick={startAnimation}>SHRINK</button> */}
       <footer>
         <img className="footer-background"/>
         <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="currentColor" d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>

@@ -54,20 +54,21 @@ section{
                 flex-direction: column;
                 width: 100%;
                 min-width: 150px;
-                height: 140px;
+                // height: 140px;
                 
                 .half-circle-vertical {
                     width: 6px;
                     height: 12px;
                     background-color: #181B22;
                     position: absolute;
-                    z-index: 2;
+                    z-index: 3;
                     &.--left{
                         top:45%;
                         border-top-left-radius: 0;
                         border-bottom-left-radius: 0;
                         border-top-right-radius: 50px;
                         border-bottom-right-radius: 50px;
+                        z-index: 1000;
                     }
                     &.--right{
                         top:45%;
@@ -76,32 +77,48 @@ section{
                         border-bottom-left-radius: 50px;
                         border-top-right-radius: 0;
                         border-bottom-right-radius: 0;
+                        z-index: 1000;
                     }
                 }
                 .countdown-item-top{
                     background-color: #2C2C44;
                     color:#FE5C83;
                     height: 68px;
-                    // z-index: 1;
+                    z-index: 2;
+                    
                     border-radius: 8px 8px 0px 0px;
                     // position: relative;
                     // min-height: 70px;
                     position: relative;
-                    .shadow{
-                        position: absolute;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+                    &.--absolute{
                         width: 100%;
-                        height: 100%;
-                        background-color: #2C2C44;
-                        left: 0;
-                        opacity: 0.1;
+                        position: absolute !important;
+                        z-index: 3;
+                        // border-top: 0.5px solid black;
+                        // border-left: 0.5px solid black;
+                        // border-right: 0.5px solid black;
                     }
-                    p{
-                        margin-top: 9%;
-                        overflow: hidden; /* Ensure content doesn't overflow when height is reduced */
-                        white-space: nowrap; /* Prevent text from wrapping */
-                        transition: height 2s; /* Ensure smooth transition */
-                    //   position: absolute;
-                    //   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);  
+                    .shadow{
+                        // position: absolute;
+                        // width: 100%;
+                        // height: 100%;
+                        // background-color: #2C2C44;
+                        // left: 0;
+                        // opacity: 0.1;
+                    }
+                    // p{
+                    //     margin-top: 9%;
+                    //     overflow: hidden; /* Ensure content doesn't overflow when height is reduced */
+                    //     white-space: nowrap; /* Prevent text from wrapping */
+                    //     transition: height 2s; /* Ensure smooth transition */
+                    // //   position: absolute;
+                    // //   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);  
+                    // }
+                    img{
+                        position: relative;
                     }
                     
                 }
@@ -111,17 +128,32 @@ section{
                     // bottom: 0;
                     height: 68px;
                     // // width: 100%;
-                    // z-index: 1;
+                    z-index: 1;
                     color: #FE5C83;
                     border-radius: 0px 0px 8px 8px;
                     // position: relative;
-                    -webkit-box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
-                    -moz-box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
-                    box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
-                    p{
-                        margin-top: -36%;
-                    //   position: absolute;
-                    //   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);  
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    &.--bordered{
+                        -webkit-box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
+                        -moz-box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
+                        box-shadow: 0px 18px 4px -8px rgba(23,25,37,0.93);
+                    }
+                    &.--absolute{
+                        width: 100%;
+                        position: absolute !important;
+                        bottom: 0;
+                        z-index: 1;
+                        // border-bottom: 0.5px solid black;
+                        // border-left: 0.5px solid black;
+                        // border-right: 0.5px solid black;
+                        display: none;
+                    }
+                    img{
+                            position: relative;
+                        //   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);  
                     } 
                 }
             }
@@ -154,18 +186,84 @@ footer{
     }
 }
 
-// .fadeOut-anim {
-//     animation: fadeOut 2s backwards; /* 2s is the duration of the animation */
-//   }
+.fadeBottom-anim {
+    -webkit-animation: scale-bottom-ver-top 0.3s  linear forwards ;
+	animation: scale-bottom-ver-top 0.3s  linear forwards ;
+    display: flex !important;
+  }
 
-//   @keyframes fadeOut {
-//     0% {
-//       height: 80px; /* Start with the full height */
-//     }
-//     100% {
-//       height: 0px; /* End with no height */
-//     }
-//   }
+.fadeTop-anim {
+    -webkit-animation: scale-up-ver-bottom 0.3s linear reverse forwards;
+	animation: scale-up-ver-bottom 0.3s linear reverse forwards;
+}
+
+@-webkit-keyframes scale-up-ver-bottom {
+    0% {
+      -webkit-transform: scaleY(0.0);
+              transform: scaleY(0.0);
+      -webkit-transform-origin: 0% 100%;
+              transform-origin: 0% 100%;
+        background-color: #3a3c5b;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 0% 100%;
+              transform-origin: 0% 100%;
+        background-color: #2C2C44;
+    }
+  }
+  @keyframes scale-up-ver-bottom {
+    0% {
+      -webkit-transform: scaleY(0.0);
+              transform: scaleY(0.0);
+      -webkit-transform-origin: 0% 100%;
+              transform-origin: 0% 100%;
+        background-color: #3a3c5b;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 0% 100%;
+              transform-origin: 0% 100%;
+        background-color: #2C2C44;
+    }
+  }
+
+  @-webkit-keyframes scale-bottom-ver-top {
+    0% {
+      -webkit-transform: scaleY(0.0);
+              transform: scaleY(0.0);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+        background-color: #3a3c5b;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+        background-color: #34364F;
+    }
+  }
+  @keyframes scale-bottom-ver-top {
+    0% {
+      -webkit-transform: scaleY(0.0);
+              transform: scaleY(0.0);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+        background-color: #3a3c5b;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+        background-color: #34364F;
+    }
+  }
+
+  
 
 @media screen and (max-width: 710px) {
     .half-circle-vertical {
@@ -183,14 +281,16 @@ footer{
     }
     .countdown-item-top{
         height: 34px !important;
-        p{
-            margin-top: 15% !important;
+        img{
+            width: 15px !important;
+            max-height: 10px !important;
         }
     }
     .countdown-item-bottom{
         height: 34px !important;
-        p{
-            margin-top: -34% !important;
+        img{
+            width: 15px !important;
+            max-height: 10px !important;
         }
     }
     .date-text{
