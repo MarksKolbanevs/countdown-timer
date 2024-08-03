@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function CountdownItem({time, timeName}) {
     const [isShrinkingTop, setIsShrinkingTop] = useState(false);
@@ -6,18 +6,18 @@ export default function CountdownItem({time, timeName}) {
 
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-    useEffect(() => {
-        startAnimation();
-      }, [time]);
-    
-    const startAnimation = async () => {
+    const startAnimation = useCallback(async () => {
       setIsShrinkingTop(true);
       await delay(300);
       setIsShrinkingBottom(true);
       await delay(300);
       setIsShrinkingBottom(false);
       setIsShrinkingTop(false);
-    };
+  }, []);
+
+  useEffect(() => {
+      startAnimation();
+  }, [time, startAnimation]);
 
     return (
         <div className='countdown-item-container'>
